@@ -120,7 +120,12 @@ add_custom_target(_vllm_fa4_cutedsl_C)
 # so edits to cute-dsl Python files take effect immediately without rebuilding.
 # Otherwise, copy files and transform flash_attn.cute imports to
 # vllm.vllm_flash_attn.cute to match our package structure.
-if(VLLM_FLASH_ATTN_SRC_DIR)
+#
+# NOT on Windows: file(CREATE_LINK ... SYMBOLIC) needs SeCreateSymbolicLinkPrivilege
+# (elevated shell or Developer Mode), and os.walk() does not follow directory
+# symlinks, so bdist_wheel would silently ship an empty cute/ directory. Always
+# take the copy+transform path there.
+if(VLLM_FLASH_ATTN_SRC_DIR AND NOT WIN32)
   install(CODE "
     set(LINK_TARGET \"${vllm-flash-attn_SOURCE_DIR}/flash_attn/cute\")
     set(LINK_NAME \"\${CMAKE_INSTALL_PREFIX}/vllm/vllm_flash_attn/cute\")

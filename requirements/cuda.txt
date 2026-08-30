@@ -4,13 +4,13 @@
 numba == 0.65.0 # Required for N-gram speculative decoding
 
 # Dependencies for NVIDIA GPUs
-torch==2.11.0; sys_platform != "win32"
-torchaudio==2.11.0; sys_platform != "win32"
-torch==2.11.0+cu130; sys_platform == "win32"
-torchaudio==2.11.0+cu130; sys_platform == "win32"
+torch==2.12.1; sys_platform != "win32"
+torchaudio==2.11.0a0; sys_platform != "win32"
+torch==2.12.1+cu130; sys_platform == "win32"
+torchaudio==2.11.0a0+d20260331.cu130torch2.12.1cxx11abitrue; sys_platform == "win32"
 # These must be updated alongside torch
-torchvision==0.26.0; sys_platform != "win32" # Required for phi3v processor. See https://github.com/pytorch/vision?tab=readme-ov-file#installation for corresponding version
-torchvision==0.26.0+cu130; sys_platform == "win32" # Required for phi3v processor. See https://github.com/pytorch/vision?tab=readme-ov-file#installation for corresponding version
+torchvision==0.27.1; sys_platform != "win32" # Required for phi3v processor. See https://github.com/pytorch/vision?tab=readme-ov-file#installation for corresponding version
+torchvision==0.27.1+cu130; sys_platform == "win32" # Required for phi3v processor. See https://github.com/pytorch/vision?tab=readme-ov-file#installation for corresponding version
 torchcodec >= 0.14
 PyNvVideoCodec==2.0.4
 # FlashInfer should be updated together with the Dockerfile
@@ -19,7 +19,7 @@ PyNvVideoCodec==2.0.4
 --extra-index-url https://flashinfer.ai/whl/
 flashinfer-python==0.6.15.post1; sys_platform != "win32"
 flashinfer-cubin==0.6.15.post1; sys_platform != "win32"
-flashinfer-python @ https://github.com/SystemPanic/flashinfer-windows/releases/download/v0.6.11.post3/flashinfer_python-0.6.11.post3-py3-none-any.whl ; sys_platform == "win32"
+#flashinfer-python @ https://github.com/SystemPanic/flashinfer-windows/releases/download/v0.6.11.post3/flashinfer_python-0.6.11.post3-py3-none-any.whl ; sys_platform == "win32"
 flashinfer-cubin==0.6.11.post3; sys_platform == "win32"
 apache-tvm-ffi==0.1.10
 tilelang==0.1.9; sys_platform != "win32"
@@ -40,4 +40,4 @@ tokenspeed-mla==0.1.8; platform_system == "Linux"
 
 # Humming kernels for quantization gemm
 humming-kernels[cu13]==0.1.10; sys_platform != "win32"
-humming-kernels[cu13] @ git+https://github.com/SystemPanic/humming-windows.git@v0.1.10 ; sys_platform == "win32"
+#humming-kernels[cu13] @ git+https://github.com/SystemPanic/humming-windows.git@v0.1.10 ; sys_platform == "win32"
